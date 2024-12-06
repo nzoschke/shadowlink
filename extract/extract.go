@@ -30,12 +30,3 @@ func Info(u string) (oembed.Info, error) {
 
 	return *info.GenerateOembedFor(u), nil
 }
-
-func InfoLite(i oembed.Info) oembed.Info {
-	i.AuthorURL = ""
-	i.HTML = ""
-	i.ProviderURL = ""
-	i.ThumbnailURL = ""
-	i.URL = ""
-	return i
-}

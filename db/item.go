@@ -6,9 +6,12 @@ import (
 	"github.com/dyatlov/go-oembed/oembed"
 )
 
-type ItemCreate struct {
+type Item struct {
 	ChannelID   string      `json:"channel_id"`
 	ChannelName string      `json:"channel_name"`
+	CreatedAt   time.Time   `json:"created_at"`
+	DeletedAt   time.Time   `json:"deleted_at"`
+	ID          int         `json:"id"`
 	Link        string      `json:"link"`
 	Meta        oembed.Info `json:"meta"`
 	ServiceName string      `json:"service_name"`
@@ -17,12 +20,9 @@ type ItemCreate struct {
 	UserID      string      `json:"user_id"`
 }
 
-type Item struct {
-	ID          int         `json:"id"`
+type ItemCreate struct {
 	ChannelID   string      `json:"channel_id"`
 	ChannelName string      `json:"channel_name"`
-	CreatedAt   time.Time   `json:"created_at"`
-	DeletedAt   time.Time   `json:"deleted_at"`
 	Link        string      `json:"link"`
 	Meta        oembed.Info `json:"meta"`
 	ServiceName string      `json:"service_name"`

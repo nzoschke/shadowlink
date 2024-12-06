@@ -12,7 +12,6 @@ import (
 	"golang.org/x/xerrors"
 )
 
-// https://github.com/bwmarrin/discordgo/blob/master/examples/pingpong/main.go
 func main() {
 	if err := mainErr(); err != nil {
 		log.Fatalf("ERR: %+v\n", err)
@@ -35,7 +34,9 @@ func mainErr() error {
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 	<-sc
 
-	close()
+	if err := close(); err != nil {
+		return xerrors.Errorf(": %w", err)
+	}
 
 	return nil
 }
