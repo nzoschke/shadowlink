@@ -20,3 +20,10 @@ PRIVACY WARNING: Shadow Link listens to all messages in your server and exfiltra
   - [ ] Spotify playlist
   - [ ] Web page
   - [ ] YouTube playlist
+
+## Deploy
+
+```bash
+flyctl apps create shadowlink
+make deploy
+```
