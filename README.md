@@ -1,6 +1,6 @@
 # Shadow Link
 
-Shadow Link is a bot that creates a collaborative playlist from music and video links shared in your Discord community.
+Shadow Link is a bot that creates a collaborative playlist of music and video links shared in your Discord server.
 
 - Add Shadow Link to your Discord server
 - Paste a YouTube link in a channel
