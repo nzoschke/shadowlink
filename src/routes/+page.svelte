@@ -40,6 +40,10 @@
   });
 </script>
 
+<svelte:head>
+  <title>Shadow Link</title>
+</svelte:head>
+
 <div class="flex size-full flex-col items-center justify-center gap-2 p-2">
   {#each items as _, i}
     {@const item = items[items.length - 1 - i]}
