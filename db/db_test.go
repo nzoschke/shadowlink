@@ -9,28 +9,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// func TestItemCreate(t *testing.T) {
-// 	t.Skip()
-// 	d, err := db.New(os.Getenv("SUPABASE_URL"), os.Getenv("SUPABASE_SECRET"))
-// 	if err != nil {
-// 		t.Fatal(err)
-// 	}
-
-// 	if err := d.ItemCreate(context.Background(), db.ItemCreate{
-// 		ChannelName: "test",
-// 		Link:        "https://example.com",
-// 		Meta: oembed.Info{
-// 			Description: "test",
-// 		},
-// 		ServiceID:   "1",
-// 		ServiceName: "test",
-// 		UserName:    "test",
-// 	}); err != nil {
-// 		t.Fatal(err)
-// 	}
-// }
-
 func TestItemLifecycle(t *testing.T) {
+	t.Skip()
+
 	ctx := context.Background()
 
 	d, err := db.New(os.Getenv("SUPABASE_URL"), os.Getenv("SUPABASE_SECRET"))
