@@ -28,8 +28,8 @@ func Open(token string, db db.DB) (*discordgo.Session, func() error, error) {
 	return dg, dg.Close, nil
 }
 
-func use(ctx context.Context, d db.DB, f func(context.Context, db.DB, *discordgo.Session, *discordgo.MessageCreate) error) func(*discordgo.Session, *discordgo.MessageCreate) {
-	return func(s *discordgo.Session, m *discordgo.MessageCreate) {
+func use[T any](ctx context.Context, d db.DB, f func(context.Context, db.DB, *discordgo.Session, T) error) func(*discordgo.Session, T) {
+	return func(s *discordgo.Session, m T) {
 		if err := f(ctx, d, s, m); err != nil {
 			log.Printf("ERROR: %+v", err)
 		}
