@@ -19,7 +19,10 @@ func Open(token string, db db.DB) (*discordgo.Session, func() error, error) {
 	}
 
 	dg.AddHandler(use(ctx, db, messageCreate))
-	dg.Identify.Intents = discordgo.IntentsGuildMessages
+	dg.AddHandler(use(ctx, db, messageReactionAdd))
+
+	dg.Identify.Intents |= discordgo.IntentsGuildMessages
+	dg.Identify.Intents |= discordgo.IntentsGuildMessageReactions
 
 	if err = dg.Open(); err != nil {
 		return nil, nil, xerrors.Errorf(": %w", err)
@@ -34,6 +37,45 @@ func use[T any](ctx context.Context, d db.DB, f func(context.Context, db.DB, *di
 			log.Printf("ERROR: %+v", err)
 		}
 	}
+}
+
+func messageReactionAdd(ctx context.Context, d db.DB, s *discordgo.Session, r *discordgo.MessageReactionAdd) error {
+	if r.Emoji.Name != "❌" {
+		return nil
+	}
+
+	m, err := s.ChannelMessage(r.ChannelID, r.MessageID)
+	if err != nil {
+		return xerrors.Errorf(": %w", err)
+	}
+
+	infos, err := extract.MediaInfos(m.Content)
+	if err != nil {
+		return xerrors.Errorf(": %w", err)
+	}
+
+	for _, info := range infos {
+		log.Printf("Deleting %s\n", info.URL)
+
+		if err := d.ItemDelete(ctx, db.ItemKey{
+			ServiceID: r.GuildID,
+			URL:       info.URL,
+		}); err != nil {
+			return xerrors.Errorf(": %w", err)
+		}
+	}
+
+	if len(infos) > 0 {
+		if err := s.MessageReactionRemove(m.ChannelID, m.ID, "🔗", s.State.User.ID); err != nil {
+			return xerrors.Errorf(": %w", err)
+		}
+
+		if err := s.MessageReactionAdd(m.ChannelID, m.ID, "⛓️‍💥"); err != nil {
+			return xerrors.Errorf(": %w", err)
+		}
+	}
+
+	return nil
 }
 
 func messageCreate(ctx context.Context, d db.DB, s *discordgo.Session, m *discordgo.MessageCreate) error {
