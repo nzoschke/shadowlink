@@ -1,4 +1,6 @@
 deploy:
+	npm run build
+	
 	flyctl auth docker
 
 	go run github.com/tailscale/mkctr@latest \
