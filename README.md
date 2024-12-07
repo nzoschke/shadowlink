@@ -13,7 +13,7 @@ PRIVACY WARNING: Shadow Link listens to all messages in your server and exfiltra
 
 - [x] Extract and save links from messages to database
 - [x] Extract opengraph metadata from web pages
-- [ ] Delete links by reaction
+- [x] Delete links by reaction
 - [ ] Send all bot activity to a mod channel
 - [ ] Generate public feeds
   - [ ] RSS feed
