@@ -18,7 +18,7 @@ PRIVACY WARNING: Shadow Link listens to all messages in your server and exfiltra
 - [ ] Generate public feeds
   - [ ] RSS feed
   - [ ] Spotify playlist
-  - [ ] Web page
+  - [x] Web page
   - [ ] YouTube playlist
 
 ## Deploy
