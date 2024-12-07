@@ -28,5 +28,11 @@ func Info(u string) (oembed.Info, error) {
 		return oembed.Info{}, xerrors.Errorf(": %w", err)
 	}
 
-	return *info.GenerateOembedFor(u), nil
+	// use canonical og:url if present
+	i := *info.GenerateOembedFor(u)
+	if info.OGInfo.URL != "" {
+		i.URL = info.OGInfo.URL
+	}
+
+	return i, nil
 }

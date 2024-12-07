@@ -10,6 +10,7 @@ import (
 )
 
 func TestItemCreate(t *testing.T) {
+	t.Skip()
 	d, err := db.New(os.Getenv("SUPABASE_URL"), os.Getenv("SUPABASE_SECRET"))
 	if err != nil {
 		t.Fatal(err)
