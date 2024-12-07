@@ -6,27 +6,35 @@ import (
 	"github.com/dyatlov/go-oembed/oembed"
 )
 
-type Item struct {
-	ChannelID   string      `json:"channel_id"`
-	ChannelName string      `json:"channel_name"`
-	CreatedAt   time.Time   `json:"created_at"`
-	DeletedAt   time.Time   `json:"deleted_at"`
-	ID          int         `json:"id"`
-	Link        string      `json:"link"`
-	Meta        oembed.Info `json:"meta"`
-	ServiceName string      `json:"service_name"`
-	ServiceID   string      `json:"service_id"`
-	UserName    string      `json:"user_name"`
-	UserID      string      `json:"user_id"`
+type Author struct {
+	Channel string `json:"channel"`
+	Name    string `json:"name"`
+	Service string `json:"service"`
 }
 
-type ItemCreate struct {
-	ChannelID   string      `json:"channel_id"`
-	ChannelName string      `json:"channel_name"`
-	Link        string      `json:"link"`
-	Meta        oembed.Info `json:"meta"`
-	ServiceName string      `json:"service_name"`
-	ServiceID   string      `json:"service_id"`
-	UserName    string      `json:"user_name"`
-	UserID      string      `json:"user_id"`
+type Item struct {
+	Author    Author      `json:"author"`
+	CreatedAt time.Time   `json:"created_at"`
+	DeletedAt time.Time   `json:"deleted_at"`
+	ID        int         `json:"id"`
+	Meta      oembed.Info `json:"meta"`
+	ServiceID string      `json:"service_id"`
+	URL       string      `json:"url"`
+}
+
+type ItemDelete struct {
+	DeletedAt time.Time `json:"deleted_at"`
+}
+
+type ItemKey struct {
+	ServiceID string `json:"service_id"`
+	URL       string `json:"url"`
+}
+
+type ItemUpsert struct {
+	Author    Author      `json:"author"`
+	Meta      oembed.Info `json:"meta"`
+	ServiceID string      `json:"service_id"`
+	UpdatedAt time.Time   `json:"updated_at"`
+	URL       string      `json:"url"`
 }

@@ -2,6 +2,7 @@ package db
 
 import (
 	"context"
+	"time"
 
 	"github.com/supabase-community/supabase-go"
 	"golang.org/x/xerrors"
@@ -20,8 +21,29 @@ func New(url, key string) (DB, error) {
 	return DB{client: client}, nil
 }
 
-func (db *DB) ItemCreate(ctx context.Context, item ItemCreate) error {
-	_, _, err := db.client.From("items").Insert(item, false, "", "", "").Execute()
+func (db *DB) ItemDelete(ctx context.Context, in ItemKey) error {
+	_, _, err := db.client.From("items").Update(ItemDelete{
+		DeletedAt: time.Now(),
+	}, "", "").Eq("service_id", in.ServiceID).Eq("url", in.URL).Execute()
+	if err != nil {
+		return xerrors.Errorf(": %w", err)
+	}
+
+	return nil
+}
+
+func (db *DB) ItemDestroy(ctx context.Context, in ItemKey) error {
+	_, _, err := db.client.From("items").Delete("", "").Eq("service_id", in.ServiceID).Eq("url", in.URL).Execute()
+	if err != nil {
+		return xerrors.Errorf(": %w", err)
+	}
+
+	return nil
+}
+
+func (db *DB) ItemUpsert(ctx context.Context, in ItemUpsert) error {
+	in.UpdatedAt = time.Now()
+	_, _, err := db.client.From("items").Insert(in, true, "service_id,url", "", "").Execute()
 	if err != nil {
 		return xerrors.Errorf(": %w", err)
 	}
