@@ -3,9 +3,11 @@ module github.com/nzoschke/shadowlink
 go 1.23.1
 
 require (
+	github.com/bobesa/go-domain-util v0.0.0-20190911083921-4033b5f7dd89
 	github.com/bwmarrin/discordgo v0.28.1
 	github.com/dyatlov/go-htmlinfo v0.0.0-20180517114536-d9417c75de65
 	github.com/dyatlov/go-oembed v0.0.0-20191103150536-a57c85b3b37c
+	github.com/labstack/echo/v4 v4.13.0
 	github.com/stretchr/testify v1.10.0
 	github.com/supabase-community/supabase-go v0.0.4
 	golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da
@@ -21,7 +23,6 @@ require (
 	github.com/dyatlov/go-readability v0.0.0-20220519115547-c2dce56b8cdd // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
-	github.com/labstack/echo/v4 v4.13.0 // indirect
 	github.com/labstack/gommon v0.4.2 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect

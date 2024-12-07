@@ -30,43 +30,34 @@ export type Database = {
     Tables: {
       items: {
         Row: {
-          channel_id: string;
-          channel_name: string;
+          author: Json;
           created_at: string;
           deleted_at: string | null;
           id: number;
-          link: string;
           meta: Json;
           service_id: string;
-          service_name: string;
-          user_id: string;
-          user_name: string;
+          updated_at: string;
+          url: string;
         };
         Insert: {
-          channel_id: string;
-          channel_name?: string;
+          author: Json;
           created_at?: string;
           deleted_at?: string | null;
           id?: number;
-          link: string;
           meta: Json;
           service_id: string;
-          service_name: string;
-          user_id: string;
-          user_name: string;
+          updated_at?: string;
+          url: string;
         };
         Update: {
-          channel_id?: string;
-          channel_name?: string;
+          author?: Json;
           created_at?: string;
           deleted_at?: string | null;
           id?: number;
-          link?: string;
           meta?: Json;
           service_id?: string;
-          service_name?: string;
-          user_id?: string;
-          user_name?: string;
+          updated_at?: string;
+          url?: string;
         };
         Relationships: [];
       };
