@@ -46,6 +46,7 @@
       .from("items")
       .select("*")
       .is("deleted_at", null)
+      .order("updated_at", { ascending: false })
       .limit(100);
     if (error) {
       console.error(error);
@@ -73,8 +74,8 @@
   </div>
 
   <div class="w-full space-y-2 p-2">
-    {#each items as _, i}
-      {@render item(items[items.length - 1 - i])}
+    {#each items as i}
+      {@render item(i)}
     {/each}
   </div>
 </div>
