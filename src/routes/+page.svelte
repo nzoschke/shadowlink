@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { createClient } from '@supabase/supabase-js';
 	import type { Database } from '$lib/database';
-	import { getRelativeTimeString } from '$lib/time';
+	import { relative } from '$lib/time';
 
 	type Item = Database['public']['Tables']['items']['Row'];
 	type Meta = {
@@ -67,7 +67,7 @@
 				<div class="truncate">
 					<a class="leading-7" href={item.link}>{item.link.split('/')[2]}</a>
 				</div>
-				<div class="truncate">{getRelativeTimeString(Date.parse(item.created_at))}</div>
+				<div class="truncate">{relative(Date.parse(item.created_at))}</div>
 			</div>
 		</div>
 	{/each}

@@ -1,4 +1,4 @@
-export function getRelativeTimeString(date: Date | number, lang = navigator.language): string {
+export function relative(date: Date | number, lang = navigator.language): string {
 	// Allow dates or times to be passed
 	const timeMs = typeof date === 'number' ? date : date.getTime();
 
