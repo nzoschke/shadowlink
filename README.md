@@ -1,38 +1,29 @@
-# sv
+# Shadow Link
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Shadow Link is a bot that creates a collaborative playlist of music and video links shared in your Discord server.
 
-## Creating a project
+- Add Shadow Link to your Discord server
+- Paste a YouTube link in a channel
+- See 🔗 reaction from Shadow Link if it saved the link
+- Add ❌ reaction to delete the like
 
-If you're seeing this, you've probably already done this step. Congrats!
+PRIVACY WARNING: Shadow Link listens to all messages in your server and exfiltrates some content. Be careful.
 
-```bash
-# create a new project in the current directory
-npx sv create
+## Roadmap
 
-# create a new project in my-app
-npx sv create my-app
-```
+- [x] Extract and save links from messages to database
+- [x] Extract opengraph metadata from web pages
+- [ ] Delete links by reaction
+- [ ] Send all bot activity to a mod channel
+- [ ] Generate public feeds
+  - [ ] RSS feed
+  - [ ] Spotify playlist
+  - [x] Web page
+  - [ ] YouTube playlist
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
+## Deploy
 
 ```bash
-npm run build
+flyctl apps create shadowlink
+make deploy
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
